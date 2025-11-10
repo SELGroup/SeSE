@@ -1,6 +1,6 @@
-# Detecting Hallucinations in Large Language Models Using Semantic Entropy
+# SeSE: A Structural Information-Guided Uncertainty Quantification Framework for Hallucination Detection in LLMs
 
-This repository contains the code necessary to reproduce the paragraph-length experiments of the Nature submission 'Detecting Hallucinations in Large Language Models Using Semantic Entropy'.
+This repository contains the code necessary to reproduce the paragraph-length experiments of the Nature submission 'SeSE: A Structural Information-Guided Uncertainty Quantification Framework for Hallucination Detection in LLMs'. The long-form dataset will be made open source after the article is accepted.
 
 
 ## System Requirements
@@ -54,7 +54,7 @@ Note that OpenAI charges a cost per input token and per generated token.
 Costs for reproducing our results vary depending on experiment configuration, but, without any guarantee, should be around 20 dollars to reproduce our results.
 
 
-The FactualBio dataset is included with this codebase in the file `data.py`.
+The long-form dataset is included with this codebase in the file `data.py`.
 
 
 ## Reproduction Instructions
@@ -68,21 +68,16 @@ python hallucination.py --model=SelfCheckBaseline
 python hallucination.py --model=PTrueOriginalBaseline
 ```
 
-to reproduce results for paraphrase-length generations.
+to reproduce results for long-form generations.
 
 The expected runtime of running all scripts in parallel is about 2 hours.
-
-To evaluate the run and obtain a barplot similar to those of the paper, open the the Jupyter notebook in [notebooks/example_evaluation.ipynb](notebooks/example_evaluation.ipynb), populate the wandb ids in the second cell with the ids assigned to your runs, and execute all cells of the notebook.
-
-
-We refer to [https://jupyter.org/](https://jupyter.org/) for more information on how to start the Jupter notebook server.
-
 
 
 ## Repository Structure
 
 We here give a brief overview over the various components of the code.
 
-* `hallucination.py`: Main script that iterates over datapoints of FactualBio dataset.
-* `data.py`: Contains FactualBio dataset.
+* `hallucination.py`: Main script that iterates over datapoints of long-form dataset.
+* `data.py`: Contains long-form dataset.
 * `models.py`: Implements different hallucination detection methods.
+

@@ -1,7 +1,7 @@
 
 ---
 
-# **SIHD Project Documentation**  
+# **SeSE Project Documentation**  
 
 ## **Project Overview**  
 This code repository contains all the code necessary to reproduce the experiments in the paper *"SeSE: A Structural Information-Guided Uncertainty Quantification Framework for Hallucination Detection in LLMs"* (submitted to IEEE TKDE). We have publicly released all the code and data used to generate the main experiment results at the following address: [https://github.com/SELGroup/SeSE](https://github.com/SELGroup/SeSE).  
@@ -66,7 +66,7 @@ After installing conda, you can set up and activate a new conda environment by e
 
 ```bash
 conda-env update -f environment.yml
-conda activate SIHD
+conda activate SeSE
 ```
 
 The installation process is expected to take approximately 20 minutes.
@@ -161,6 +161,7 @@ The `run_record/` folders in both modules store intermediate outputs (charts, me
 For any questions or support, please contact the us at xtaozhao@buaa.edu.cn.
 
 ---
+
 
 
 

@@ -1,7 +1,7 @@
 
 ---
 
-# **SeSE Project Documentation**  
+# **Semantic Structural Entropy**  
 
 ## **Project Overview**  
 This code repository contains all the code necessary to reproduce the experiments in the [paper](https://arxiv.org/abs/2511.16275) **SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory**. We have publicly released all the code and data used to generate the main experiment results at the following address: [https://github.com/SELGroup/SeSE](https://github.com/SELGroup/SeSE).  
@@ -161,6 +161,7 @@ The `run_record/` folders in both modules store intermediate outputs (charts, me
 For any questions or support, please contact the us at xtaozhao@buaa.edu.cn.
 
 ---
+
 
 
 

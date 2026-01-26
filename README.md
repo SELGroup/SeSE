@@ -18,7 +18,7 @@ The project consists of two main modules:
 ├── environment.yml                # Conda dependencies for the project  
 ├── requirements.txt               # Python dependencies  
 ├── long_form_structural_entropy/  # Module for long-form hallucination detection  
-│   ├── DeepSeek_V3.1_data.py        # Handles DeepSeek-V3.1 dataset processing  
+│   ├── data.py        
 │   ├── HCSE.py                    # Implements Hierarchical Clustering Structural Entropy  
 │   ├── main.py                    # Main entry script for long-form experiments  
 │   ├── run_record/                # Stores experimental outputs  
@@ -161,6 +161,7 @@ The `run_record/` folders in both modules store intermediate outputs (charts, me
 For any questions or support, please contact the us at xtaozhao@buaa.edu.cn.
 
 ---
+
 
 
 

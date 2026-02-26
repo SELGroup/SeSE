@@ -157,10 +157,8 @@ The `run_record/` folders in both modules store intermediate outputs (charts, me
 ---
 
 
-### **Contact**
-For any questions or support, please contact the us at xtaozhao@buaa.edu.cn.
 
----
+
 
 
 

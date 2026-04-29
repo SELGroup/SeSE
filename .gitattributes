@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c13364e925082f1f96e440ac08e7be7d9323b798776610a955e01818517a3aca
-size 142
+long_form_structural_entropy/long_form_data/*.json filter=lfs diff=lfs merge=lfs -text

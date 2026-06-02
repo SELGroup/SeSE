@@ -156,15 +156,16 @@ The `run_record/` folders in both modules store intermediate outputs (charts, me
 
 ---
 
-> @inproceedings{
-anonymous2026sese,
+```bibtex
+@inproceedings{
+UAI    2026sese,
 title={Se{SE}: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory},
 author={Xingtao Zhao, Hao Peng, Dingli Su, Xianghua Zeng, Chunyang Liu, Jinzhi Liao, Philip S. Yu},
 booktitle={Forty-Second Annual Conference on Uncertainty in Artificial Intelligence},
 year={2026},
 url={https://openreview.net/forum?id=THZuVvy7SV}
 }
-
+```
 
 
 

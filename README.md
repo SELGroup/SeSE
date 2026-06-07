@@ -1,162 +1,189 @@
+# **SeSE** &mdash; *Knowing What Large Language Models Don’t Know*
+
+<div align="center">
+
+[![UAI 2026 Oral](https://img.shields.io/badge/UAI%202026-Oral%20(top%201%25)-gold)](https://openreview.net/forum?id=THZuVvy7SV)
+[![Conference](https://img.shields.io/badge/Conference-UAI%202026-blue)](https://www.auai.org/uai2026/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1-red)](https://pytorch.org/)
+
+</div>
 
 ---
 
-# **Semantic Structural Entropy**  
+<div align="center">
+    <img src="framework_preview.png" alt="SeSE Framework Overview" width="100%" />
+  </a>
+  <br />
+</div>
 
-## **Project Overview**  
-This code repository contains all the code necessary to reproduce the experiments in the paper **SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory**. We have publicly released all the code and data used to generate the main experiment results at the following address: [https://github.com/SELGroup/SeSE](https://github.com/SELGroup/SeSE).  
+---
+<div align="center" style="background: linear-gradient(135deg, #fffbe6, #fff3b0); border-left: 5px solid #d4a017; border-radius: 8px; padding: 16px 20px; margin: 20px 0;">
+  <p style="margin: 0; font-size: 1.1em;">
+    Our paper《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》has been accepted by <strong>UAI 2026</strong> as an <span style="color: #b8860b; font-weight: bold;">Oral presentation</span> <br />  <span style="color: #8b0000; font-weight: bold;">(top 1% of 1087 submissions)</span>.
+  </p>
+</div>
 
-The project consists of two main modules:  
-1. **Long-form text hallucination detection**  
-2. **Sentence-level hallucination detection**  
+
+## Introduction
+
+Large language models (LLMs) are increasingly deployed in safety-critical scenarios, yet they remain prone to **hallucinations** -- generating plausible but factually incorrect responses. Reliable **uncertainty quantification (UQ)** is essential for enabling LLMs to abstain from answering when uncertain, thereby mitigating these risks. We propose **Semantic Structural Entropy (SeSE)**, a **principled black-box UQ framework** that works for both **open- and closed-source LLMs** without requiring access to internal model states.
+
+### Key Contributions
+
+- **Principled Information Theory-based Approach**: Unlike existing semantic UQ methods that overlook latent semantic structural information, SeSE reveals the intrinsic hierarchy of the LLM semantic space by constructing its optimal hierarchical abstraction based on the principle of structural entropy minimization. The structural entropy of this optimal abstraction quantifies the inherent uncertainty within the semantic space after optimal compression.
+
+- **Theoretical Generalization**: We theoretically prove that SeSE generalizes Semantic Entropy (SE), the gold standard for UQ in LLMs -- SeSE recovers SE when the encoding tree is restricted to a single layer, demonstrating it as a strictly more expressive framework.
+
+- **Granular Claim-level Uncertainty Estimation**: While existing methods focus primarily on simple short-form outputs, SeSE provides interpretable and granular claim-level uncertainty estimation for long-form generation. By constructing claim-response bipartite graphs and computing claim-level structural entropy, it captures fine-grained semantic dependencies between claims and responses.
+
+- **State-of-the-Art Performance**: Extensive experiments across 24 model-dataset combinations demonstrate SeSE is superior performance over baselines.
+
 
 ---
 
-## **Project Structure**  
+## Project Overview
+
+This code repository contains all the code necessary to reproduce the experiments in the paper. We have publicly released all the code and data used to generate the main experiment results.
+
+The project consists of two main modules:
+1. **Long-form uncertainty quantification** -- detects hallucinations and quantifies uncertainty in paragraph-level LLM outputs via claim-response bipartite graphs
+2. **Short-form generation uncertainty quantification** -- quantifies semantic uncertainty in standard QA tasks (BioASQ, TriviaQA, SQuAD, etc.) via structural entropy
+
+---
+
+## Project Structure
+
 ```
-├── README.md                      # Documentation for the project  
-├── environment.yml                # Conda dependencies for the project  
-├── requirements.txt               # Python dependencies  
-├── long_form_structural_entropy/  # Module for long-form hallucination detection  
-│   ├── data.py        
-│   ├── HCSE.py                    # Implements Hierarchical Clustering Structural Entropy  
-│   ├── main.py                    # Main entry script for long-form experiments  
-│   ├── run_record/                # Stores experimental outputs  
-│   └── utils.py                   # Utility functions for evaluation  
-└── sentence_structural_entropy/   # Module for sentence-level hallucination detection  
-    ├── analyze_results.py         # Analyzes results and metrics  
-    ├── sample_answers.py          # Samples LLM-generated responses  
-    ├── src/                       # Submodules for data processing  
-    ├── uncertainty_quantification.py  # Implements uncertainty quantification  
-    └── run_record/                # Stores experimental outputs  
+README.md                      Project documentation
+environment.yml                Conda dependencies
+requirements.txt               Python dependencies
+long_form_structural_entropy/  Module for long-form uncertainty quantification
+  HCSE.py                      Implements Hierarchical Clustering Structural Entropy
+  main.py                      Main entry script for long-form experiments
+  utils.py                     Utility functions for evaluation
+  run_record/                  Stores experimental outputs
+sentence_structural_entropy/   Module for short-form uncertainty quantification
+  analyze_results.py           Analyzes results and metrics
+  sample_answers.py            Samples LLM-generated responses
+  uncertainty_quantification.py    Implements uncertainty quantification
+  src/                         Submodules for data processing, models, etc.
+    data/                      Datasets
+    models/                    Model configurations
+    uncertainty_measures/      UQ method implementations
+    utils/                     Utility functions
+  run_record/                  Stores experimental outputs
 ```
 
 ---
 
-## **System Requirements**
+## System Requirements
 
-### **Hardware Dependencies**
+### Hardware Dependencies
 
-Generally speaking, our experiments require modern computer hardware suited for working with large language models (LLMs).
+Our experiments require modern computer hardware suited for working with large language models (LLMs).
 
-The requirements for CPU and RAM are relatively modest: a system with an Intel 10th-generation CPU and 16 GB of RAM or better.
+- **CPU and RAM**: Intel 10th-generation CPU with 16 GB RAM or better.
+- **GPU**: One or more NVIDIA GPUs are required for LLM inference.
+  - **7B models**: NVIDIA GeForce RTX 4090 (24 GB) is sufficient.
+  - **13B models**: NVIDIA A100 server GPU recommended.
+  - **70B models**: Two NVIDIA A100 GPUs (2x80 GB) or eight RTX 4090 (8x24 GB).
 
-More importantly, our experiments require the use of one or more GPUs to accelerate LLM inference. Without a GPU, reproducing our results within a reasonable timeframe is not feasible. The specific GPU required depends on the size of the LLM used: larger models need GPUs with more memory.  
-- **Smaller models** (7B parameters): Desktop GPUs such as the NVIDIA GeForce RTX 4090 (24 GB) are sufficient.  
-- **Larger models** (13B parameters): GPUs with more memory, such as the Nvidia A100 server GPU, are required.  
-- **Largest models** (70B parameters): Require the simultaneous use of two Nvidia A100 GPUs (2×80 GB) or eight NVIDIA GeForce RTX 4090 (8×24 GB).  
+### Software Dependencies
 
----
+- **OS**: Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-89-generic x86_64)
+- **Python**: 3.11
+- **PyTorch**: 2.5.1
 
-### **Software Dependencies**
-
-Our code relies on Python 3.11 and PyTorch 2.5.1.
-
-Our system runs on Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-89-generic x86_64).
-
-The file [environment_export.yaml](environment_export.yaml) lists the exact versions of all Python packages used in our experiments. Please refer to the installation guide below.
+The file [environment.yml](environment.yml) lists the exact versions of all Python packages used in our experiments.
 
 ---
 
-## **Installation Guide**
+## Installation Guide
 
-To install Python and all required dependencies, we recommend using conda. For the installation guide, refer to [https://conda.io/](https://conda.io/).
+### Step 1: Install Conda
 
-After installing conda, you can set up and activate a new conda environment by executing the following commands in the shell from the root of the repository:
+If you do not have conda installed, follow the instructions at [https://conda.io/](https://conda.io/).
+
+### Step 2: Set Up Environment
 
 ```bash
 conda-env update -f environment.yml
 conda activate SeSE
 ```
 
-The installation process is expected to take approximately 20 minutes.
+The installation process is expected to take approximately **20 minutes**.
 
----
+### Step 3: Set Environment Variables
 
-### **Setting Environment Variables**
-
-Before running any experiments, please set the necessary environment variables to configure access to external APIs and libraries:
-
-- **Linux/macOS**:  
-  ```bash
+- **Linux/macOS**:
   export HUGGING_FACE_HUB_TOKEN=<your_token>
   export OPENAI_API_KEY=<your_api_key>
-  ```
-  
-- **Windows**:  
-  ```powershell
+
+- **Windows**:
   $env:HUGGING_FACE_HUB_TOKEN="<your_token>"
   $env:OPENAI_API_KEY="<your_api_key>"
-  ```
 
-Our experiments rely on Hugging Face for providing all LLM models and most datasets. You may need to apply for access to use the official Meta LLaMa model repository ([apply here](https://huggingface.co/meta-llama)).
+**Note**: You may need to request access to the official Meta LLaMa model repository ([apply here](https://huggingface.co/meta-llama)). The sentence-level experiments use GPT-5-Mini (OpenAI API) for accuracy assessment, which incurs variable costs (typically ~$5/run).
 
-Our sentence-length generation experiments use the GPT-5-Mini model provided by the OpenAI API for accuracy assessment. Note that OpenAI charges fees based on the number of input and generated tokens. The cost of reproducing our results may vary depending on the experimental configuration, but typically about $5 per run.
-
-For most tasks, datasets are automatically downloaded upon first execution via the Hugging Face Datasets library. The only exception is BioASQ (task b, BioASQ11, 2023), which must be manually downloaded from the [download page](http://participants-area.bioasq.org/datasets). We have already downloaded and stored it at `./sentence_structural_entropy/src/data/bioasq/`.
+Datasets are automatically downloaded via Hugging Face Datasets on first execution, except for **BioASQ** (task b, BioASQ11, 2023), which must be manually downloaded from [here](http://participants-area.bioasq.org/datasets) and placed at ./sentence_structural_entropy/src/data/bioasq/.
 
 ---
 
-## **Experimental Reproduction**  
+## Experimental Reproduction
 
-### **1. Long-form Structural Entropy (`long_form_structural_entropy/`)**  
-Detects hallucinations in long-form LLM-generated text.  
+### 1. Long-form Structural Entropy
 
-#### **Key Files**  
-- `*.json`: Construct fine-grained hallucination datasets generated by **DeepSeek-V3.1** and **Gemini-3**.  
-- `HCSE.py`: Implements **Hierarchical Clustering Structural Entropy (HCSE)** calculation.  
-- `main.py`: Main entry point (LLM calls, adjacency matrix construction, structural entropy calculation, and evaluation).  
-- `eval_utils.py`, `utils.py`: Evaluation and utility functions.  
-- **Outputs**: Saved in `run_record/`.  
+Uncertainty quantification in long-form LLM-generated text.
 
-#### **Execution Steps**  
-1. Install dependencies and activate the environment.  
-2. Set the environment variable `OPENAI_API_KEY` to your API key to use the corresponding models.  
-3. Run the main script:  
-   ```bash  
-   python long_form_structural_entropy/main.py  
-   ```  
-4. Results are saved in `long_form_structural_entropy/run_record/`.  
+```bash
+python long_form_structural_entropy/main.py
+```
 
----
+**Key Files**:
+- HCSE.py -- Implements Hierarchical Clustering Structural Entropy (HCSE) calculation
+- main.py -- Main entry point (LLM calls, adjacency matrix construction, structural entropy calculation, and evaluation)
+- utils.py -- Evaluation and utility functions
 
-### **2. Sentence-level Structural Entropy (`sentence_structural_entropy/`)**  
-Detects hallucinations at the sentence level.  
+Results are saved in long_form_structural_entropy/run_record/.
 
-#### **Key Files**  
-- `analyze_results.py`: Analyzes uncertainty metrics (e.g., AUROC, structural entropy).  
-- `uncertainty_quantification.py`: Implements uncertainty quantification.  
-- `sample_answers.py`: Samples answers from LLMs.  
-- `src/`: Contains submodules for data processing, models, and utilities.  
-- **Outputs**: Saved in `run_record/`.  
+### 2. Short-form Structural Entropy
 
-#### **Execution Steps**  
-1. Install dependencies and activate the environment.  
-2. Set the environment variable `OPENAI_API_KEY` to your API key to use the corresponding models.  
-3. Execute the following steps:  
-   - **Sample answers**:  
-     ```bash  
-     python sentence_structural_entropy/sample_answers.py  --model_name=$MODEL  --dataset=$DATASET $EXTRA_CFG
-     ```  
-   - **Run uncertainty quantification**:  
-     ```bash  
-     python sentence_structural_entropy/uncertainty_quantification.py --runid <run_id>  
-     ```  
-   - **Analyze results**:  
-     ```bash  
-     python sentence_structural_entropy/analyze_results.py --runid <run_id>  
-     ```  
-4. Results are saved in `sentence_structural_entropy/run_record/`.  
-5. For detailed parameter descriptions, please refer to the `sentence_structural_entropy/src/utils/utils.py` .
----
+Quantifies semantic uncertainty in short-form QA tasks.
 
-## **Run Records**  
+```bash
+# Step 1: Sample answers
+python sentence_structural_entropy/sample_answers.py --model_name=$MODEL --dataset=$DATASET $EXTRA_CFG
 
-The `run_record/` folders in both modules store intermediate outputs (charts, metrics, etc.) for reproducibility and analysis. 
+# Step 2: Run uncertainty quantification
+python sentence_structural_entropy/uncertainty_quantification.py --runid <run_id>
+
+# Step 3: Analyze results
+python sentence_structural_entropy/analyze_results.py --runid <run_id>
+```
+
+**Key Files**:
+- sample_answers.py -- Samples answers from LLMs
+- uncertainty_quantification.py -- Implements uncertainty quantification
+- analyze_results.py -- Analyzes uncertainty metrics (e.g., AUROC, structural entropy)
+- src/ -- Submodules for data processing, models, and utilities
+
+For detailed parameter descriptions, refer to sentence_structural_entropy/src/utils/utils.py.
+
+Results are saved in sentence_structural_entropy/run_record/.
 
 ---
 
-## **Citation**  
+## Run Records
+
+The run_record/ folders in both modules store intermediate outputs (charts, metrics, etc.) for reproducibility and analysis.
+
+---
+
+## Citation
+
+If you find this work useful in your research, please cite:
+
 ```bibtex
 @inproceedings{
 UAI2026sese,
@@ -168,12 +195,5 @@ url={https://openreview.net/forum?id=THZuVvy7SV}
 }
 ```
 
-
-
-
-
-
-
-
-
+---
 

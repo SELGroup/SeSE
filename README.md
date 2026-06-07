@@ -18,11 +18,9 @@
 </div>
 
 ---
-<div align="center" style="background: linear-gradient(135deg, #fffbe6, #fff3b0); border-left: 5px solid #d4a017; border-radius: 8px; padding: 16px 20px; margin: 20px 0;">
-  <p style="margin: 0; font-size: 1.1em;">
-    Our paper《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》has been accepted by <strong>UAI 2026</strong> as an <span style="color: #b8860b; font-weight: bold;">Oral presentation</span> <br />  <span style="color: #8b0000; font-weight: bold;">(top 1% of 1087 submissions)</span>.
-  </p>
-</div>
+
+> Our paper《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》has been accepted by <strong>UAI 2026</strong> as an Oral presentation (top 1% of 1087 submissions).
+
 
 
 ## Introduction

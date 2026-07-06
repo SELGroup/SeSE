@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![UAI 2026 Oral](https://img.shields.io/badge/UAI%202026-Oral%20(top%201%25)-gold)](https://openreview.net/forum?id=THZuVvy7SV)
+[![UAI 2026 Oral](https://img.shields.io/badge/UAI%202026-Oral%20(Top%201%25)-gold)](https://openreview.net/forum?id=THZuVvy7SV)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1-red)](https://pytorch.org/)
 
@@ -16,7 +16,7 @@
 
 ---
 
-> Our paper [《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》](https://arxiv.org/abs/2511.16275) has been accepted by <strong>UAI 2026</strong> as an Oral presentation (top 1% of 1087 submissions).
+> Our paper [《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》](https://arxiv.org/abs/2511.16275) has been accepted by <strong>UAI 2026 as an Oral presentation (Top 1% of 1087 submissions)</strong>.
 
 
 

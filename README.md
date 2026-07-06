@@ -16,7 +16,7 @@
 
 ---
 
-> Our paper《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》has been accepted by <strong>UAI 2026</strong> as an Oral presentation (top 1% of 1087 submissions).
+> Our paper [《SeSE: Black-Box Uncertainty Quantification for Large Language Models Based on Structural Information Theory》](https://arxiv.org/abs/2511.16275) has been accepted by <strong>UAI 2026</strong> as an Oral presentation (top 1% of 1087 submissions).
 
 
 

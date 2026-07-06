@@ -3,13 +3,10 @@
 <div align="center">
 
 [![UAI 2026 Oral](https://img.shields.io/badge/UAI%202026-Oral%20(top%201%25)-gold)](https://openreview.net/forum?id=THZuVvy7SV)
-[![Conference](https://img.shields.io/badge/Conference-UAI%202026-blue)](https://www.auai.org/uai2026/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1-red)](https://pytorch.org/)
 
 </div>
-
----
 
 <div align="center">
     <img src="framework_preview.png" alt="SeSE Framework Overview" width="100%" />
